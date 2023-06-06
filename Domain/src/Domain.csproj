@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="FunctionalDDD.DomainDrivenDesign" />
+    <PackageReference Include="FunctionalDDD.RailwayOrientedProgramming" />
+  </ItemGroup>
+</Project>

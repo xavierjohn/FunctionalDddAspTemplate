@@ -1,0 +1,45 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Sdk Name="DotNet.ReproducibleBuilds.Isolated" Version="1.1.1" />
+  <PropertyGroup Label="General">
+    <Authors>Xavier John</Authors>
+    <Company>$(Authors)</Company>
+    <Copyright>Copyright © $(Company) 2022. All rights reserved.</Copyright>
+    <NeutralLanguage>en</NeutralLanguage>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <SolutionDir Condition=" '$(SolutionDir)' == '' OR '$(SolutionDir)' == '*Undefined if not building a solution or within Visual Studio*' ">$(MSBuildThisFileDirectory)</SolutionDir>
+    <IsTestProject>$(MSBuildProjectName.EndsWith('.Tests'))</IsTestProject>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>Latest</LangVersion>
+    <AnalysisLevel>latest-Recommended</AnalysisLevel>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/xavierjohn/FunctionalDddAspTemplate</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/xavierjohn/FunctionalDddAspTemplate</PackageProjectUrl>
+  </PropertyGroup>
+
+  <PropertyGroup  Label="Build">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <!-- Enable linter -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="$(MSBuildProjectName).Tests" />
+    <PackageReference Include="Nerdbank.GitVersioning" PrivateAssets="all" />
+    <PackageReference Include="DotNet.ReproducibleBuilds" PrivateAssets="All"/>
+  </ItemGroup>
+
+  <PropertyGroup Condition=" '$(IsTestProject)' == 'false' ">
+    <RootNamespace>WeatherForcast.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <AssemblyName>WeatherForcast.$(MSBuildProjectName)</AssemblyName>
+  </PropertyGroup>
+
+  <!-- Test projects. -->
+  <ImportGroup Condition=" '$(IsTestProject)' == 'true' ">
+    <Import Project="$(MSBuildThisFileDirectory)build/test.props"/>
+  </ImportGroup>
+
+</Project>
