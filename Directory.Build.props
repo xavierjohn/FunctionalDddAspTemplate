@@ -30,11 +30,12 @@
     <InternalsVisibleTo Include="$(MSBuildProjectName).Tests" />
     <PackageReference Include="Nerdbank.GitVersioning" PrivateAssets="all" />
     <PackageReference Include="DotNet.ReproducibleBuilds" PrivateAssets="All"/>
+    <Using Include="FunctionalDDD" />
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(IsTestProject)' == 'false' ">
-    <RootNamespace>WeatherForcast.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
-    <AssemblyName>WeatherForcast.$(MSBuildProjectName)</AssemblyName>
+    <RootNamespace>BestWeatherForcast.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <AssemblyName>BestWeatherForcast.$(MSBuildProjectName)</AssemblyName>
   </PropertyGroup>
 
   <!-- Test projects. -->

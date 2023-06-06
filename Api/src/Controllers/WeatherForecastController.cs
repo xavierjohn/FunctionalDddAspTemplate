@@ -1,33 +1,26 @@
-namespace Api.Controllers
+﻿namespace BestWeatherForcast.Api.Controllers
 {
+    using BestWeatherForcast.Application.WeatherForcast;
+    using BestWeatherForcast.Domain;
+    using Mediator;
     using Microsoft.AspNetCore.Mvc;
 
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+        private readonly ISender _sender;
 
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ISender sender)
         {
-            _logger = logger;
+            _sender = sender;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
-        {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
-        }
+        [HttpGet(Name = "WeatherForecast/{zipCode?}")]
+        public async ValueTask<ActionResult<WeatherForecast>> Get(string? zipCode, CancellationToken cancellationToken)
+            => await ZipCode.New(zipCode ?? "98052")
+                .Bind(static zipCode => WeatherForcastQuery.New(zipCode))
+                .BindAsync(q => _sender.Send(q, cancellationToken))
+                .ToOkActionResultAsync(this);
     }
 }
