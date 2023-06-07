@@ -1,5 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
+    <PackageReference Include="xunit.categories" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\src\Infrastructure.csproj" />
   </ItemGroup>
 </Project>
