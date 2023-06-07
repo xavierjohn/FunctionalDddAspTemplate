@@ -1,5 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
+    <PackageReference Include="Xunit.DependencyInjection" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\src\Application.csproj" />
   </ItemGroup>
 </Project>

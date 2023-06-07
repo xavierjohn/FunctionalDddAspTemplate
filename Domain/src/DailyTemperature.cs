@@ -7,7 +7,7 @@ public class DailyTemperature : ValueObject
     public DateOnly Date { get; private set; }
     public double TemperatureC { get; private set; }
 
-    public double TemperatureF => (TemperatureC / 0.5556);
+    public double TemperatureF => (TemperatureC * 9 / 5) + 32;
 
     public string Summary { get; private set; }
 
