@@ -1,4 +1,4 @@
-﻿namespace BestWeatherForcast.Domain;
+﻿namespace BestWeatherForecast.Domain;
 
 using System.Collections.Generic;
 

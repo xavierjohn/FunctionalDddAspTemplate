@@ -34,8 +34,8 @@
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(IsTestProject)' == 'false' ">
-    <RootNamespace>BestWeatherForcast.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
-    <AssemblyName>BestWeatherForcast.$(MSBuildProjectName)</AssemblyName>
+    <RootNamespace>BestWeatherForecast.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <AssemblyName>BestWeatherForecast.$(MSBuildProjectName)</AssemblyName>
   </PropertyGroup>
 
   <!-- Test projects. -->

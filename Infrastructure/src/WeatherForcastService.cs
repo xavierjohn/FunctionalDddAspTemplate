@@ -1,17 +1,17 @@
-﻿namespace BestWeatherForcast.Infrastructure;
+﻿namespace BestWeatherForecast.Infrastructure;
 
 using System.Threading.Tasks;
-using BestWeatherForcast.Application.Abstractions;
-using BestWeatherForcast.Domain;
+using BestWeatherForecast.Application.Abstractions;
+using BestWeatherForecast.Domain;
 
-public class WeatherForcastService : IWeatherForcastService
+public class WeatherForcastService : IWeatherForecastService
 {
     private static readonly string[] s_summaries = new[]
     {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
-    public ValueTask<Result<WeatherForecast>> GetWeatherForcast(ZipCode zipCode)
+    public ValueTask<Result<WeatherForecast>> GetWeatherForecast(ZipCode zipCode)
     {
         var dailyTempratures = Enumerable.Range(1, 5).Select(index => new DailyTemperature
         (

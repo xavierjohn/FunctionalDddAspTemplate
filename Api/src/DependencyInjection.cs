@@ -1,6 +1,8 @@
-﻿namespace BestWeatherForcast.Api;
+﻿namespace BestWeatherForecast.Api;
 
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 internal static class DependencyInjection
 {
@@ -8,7 +10,22 @@ internal static class DependencyInjection
     {
         services.AddControllers();
         services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen();
+        services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+        services.AddSwaggerGen(
+            options =>
+            {
+                // add a custom operation filter which sets default values
+                options.OperationFilter<AddApiVersionParameter>();
+
+                var fileName = typeof(Program).Assembly.GetName().Name + ".xml";
+                var filePath = Path.Combine(AppContext.BaseDirectory, fileName);
+
+                // integrate xml comments
+                options.IncludeXmlComments(filePath);
+            });
+        services.AddApiVersioning()
+                .AddMvc()
+                .AddApiExplorer();
 
         _2023_06_06.Models.ConfigureMapster.Config();
         return services;

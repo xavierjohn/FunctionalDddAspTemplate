@@ -1,6 +1,6 @@
 ﻿namespace Domain.Tests;
 
-using BestWeatherForcast.Domain;
+using BestWeatherForecast.Domain;
 
 public class ZipCodeTests
 {

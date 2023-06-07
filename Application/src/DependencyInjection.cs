@@ -1,4 +1,4 @@
-﻿namespace BestWeatherForcast.Application;
+﻿namespace BestWeatherForecast.Application;
 using Microsoft.Extensions.DependencyInjection;
 
 public static class DependencyInjection
