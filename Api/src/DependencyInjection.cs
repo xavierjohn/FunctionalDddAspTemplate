@@ -10,6 +10,7 @@ internal static class DependencyInjection
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
 
+        _2023_06_06.Models.ConfigureMapster.Config();
         return services;
     }
 }

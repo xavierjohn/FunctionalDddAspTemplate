@@ -17,7 +17,7 @@ charset = utf-8-bom
 
 # XML project files
 [*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,projitems,shproj}]
-indent_size = 2
+indent_size = 4
 
 # XML config files
 [*.{props,targets,ruleset,config,nuspec,resx,vsixmanifest,vsct}]
@@ -181,6 +181,7 @@ dotnet_style_parentheses_in_arithmetic_binary_operators = always_for_clarity:sil
 dotnet_style_parentheses_in_other_binary_operators = always_for_clarity:silent
 dotnet_style_parentheses_in_relational_binary_operators = always_for_clarity:silent
 dotnet_style_parentheses_in_other_operators = never_if_unnecessary:silent
+dotnet_diagnostic.CA1707.severity = silent
 
 # CSharp code style settings:
 [*.cs]

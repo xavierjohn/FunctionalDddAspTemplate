@@ -15,6 +15,8 @@ public class ZipCode : SimpleValueObject<string>
 
     static readonly InlineValidator<ZipCode> s_validation = new()
     {
-        v => v.RuleFor(x => x.Value).NotNull().Matches(@"^\d{5}(?:[-\s]\d{4})?$") //US Zip codes.
+        v => v.RuleFor(x => x.Value)
+        .NotEmpty().OverridePropertyName("zipCode")
+        .Matches(@"^\d{5}(?:[-\s]\d{4})?$").OverridePropertyName("zipCode") //US Zip codes.
     };
 }
