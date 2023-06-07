@@ -23,23 +23,36 @@
         /// Constructor
         /// </summary>
         /// <param name="sender"></param>
-        public WeatherForecastController(ISender sender)
-        {
-            _sender = sender;
-        }
+        public WeatherForecastController(ISender sender) => _sender = sender;
+
+        /// <summary>
+        /// Get the weather forecast for Redmond,WA.
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation Token.</param>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<Models.WeatherForecast>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async ValueTask<ActionResult<Models.WeatherForecast>> GetRedmond(CancellationToken cancellationToken)
+            => await ZipCode.New("98052")
+                .Bind(static zipCode => WeatherForecastQuery.New(zipCode))
+                .BindAsync(q => _sender.Send(q, cancellationToken))
+                .MapAsync(r => r.Adapt<Models.WeatherForecast>())
+                .ToOkActionResultAsync(this);
 
         /// <summary>
         /// Get the weather forecast for the given zip code.
         /// </summary>
-        /// <param name="zipCode">Zip code. Default 98052.</param>
+        /// <param name="zipCode">Zip code.</param>
         /// <param name="cancellationToken">Cancellation Token.</param>
         /// <returns></returns>
-        [HttpGet(Name = "WeatherForecast/{zipCode?}")]
+        [HttpGet("{zipCode}")]
         [ProducesResponseType(typeof(IEnumerable<Models.WeatherForecast>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async ValueTask<ActionResult<Models.WeatherForecast>> Get(string? zipCode, CancellationToken cancellationToken)
-            => await ZipCode.New(zipCode ?? "98052")
+        public async ValueTask<ActionResult<Models.WeatherForecast>> Get(string zipCode, CancellationToken cancellationToken)
+            => await ZipCode.New(zipCode)
                 .Bind(static zipCode => WeatherForecastQuery.New(zipCode))
                 .BindAsync(q => _sender.Send(q, cancellationToken))
                 .MapAsync(r => r.Adapt<Models.WeatherForecast>())

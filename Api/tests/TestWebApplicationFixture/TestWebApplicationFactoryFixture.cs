@@ -1,0 +1,50 @@
+﻿namespace Api.Tests;
+
+using System;
+using Application.Tests;
+using BestWeatherForecast.Application.Abstractions;
+using MartinCostello.Logging.XUnit;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
+using Xunit.Abstractions;
+using Xunit.Sdk;
+
+public class TestWebApplicationFactoryFixture : WebApplicationFactory<Program>, ITestOutputHelperAccessor
+{
+    private readonly bool _useRealServices;
+
+    public TestWebApplicationFactoryFixture(IMessageSink diagnosticMessageSink)
+    {
+        Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Development");
+
+        _useRealServices = Environment.GetEnvironmentVariable("USE_REAL_SERVICES") == "true";
+        if (_useRealServices)
+            diagnosticMessageSink.OnMessage(new DiagnosticMessage("Using real services"));
+        else
+            diagnosticMessageSink.OnMessage(new DiagnosticMessage("Using mock services"));
+    }
+
+    public ITestOutputHelper? OutputHelper { get; set; }
+
+    protected override void ConfigureWebHost(IWebHostBuilder builder)
+    {
+        builder.ConfigureLogging((p) => p.AddXUnit(this));
+
+        builder.ConfigureServices(services =>
+            {
+                if (_useRealServices)
+                    return;
+
+                services.RemoveAll(typeof(IWeatherForecastService));
+                services.AddMockInfrastructure();
+            });
+    }
+}
+
+[CollectionDefinition(Id)]
+public class TestWebApplicationFactoryCollectionFixture : ICollectionFixture<TestWebApplicationFactoryFixture>
+{
+    public const string Id = "Test web application factory fixture collection";
+}

@@ -21,6 +21,7 @@ internal class MockWeatherForecastService : IWeatherForecastService
         return ValueTask.FromResult(zipCode.Value switch
         {
             "98052" => Result.Success(new WeatherForecast(zipCode, dailyTempratures)),
+            "75014" => Result.Success(new WeatherForecast(zipCode, dailyTempratures)),
             _ => Result.Failure<WeatherForecast>(Error.NotFound("No weather forecast found for the zip code.", target: zipCode))
         });
     }
