@@ -8,7 +8,7 @@ using System.Globalization;
 using System.Text.Json;
 
 /// <summary>
-/// Represents the OpenAPI/Swashbuckle operation filter used to document information provided, but not used.
+/// Configure Swashbuckle with default values from the API Explorer that it doesn't automatically do
 /// </summary>
 /// <remarks>This <see cref="IOperationFilter"/> is only required due to bugs in the <see cref="SwaggerGenerator"/>.
 /// Once they are fixed and published, this class can be removed.</remarks>

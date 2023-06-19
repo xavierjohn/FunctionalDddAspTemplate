@@ -9,19 +9,19 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Text;
 
 /// <summary>
-/// Configures the Swagger generation options.
+/// Configure the Swashbuckle options, which defines the document endpoints and high-level documentation (e.g. description)
 /// </summary>
 /// <remarks>This allows API versioning to define a Swagger document per API version after the
 /// <see cref="IApiVersionDescriptionProvider"/> service has been resolved from the service container.</remarks>
-public class ConfigureSwaggerDefaultOptions : IConfigureOptions<SwaggerGenOptions>
+public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
 {
     private readonly IApiVersionDescriptionProvider provider;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ConfigureSwaggerDefaultOptions"/> class.
+    /// Initializes a new instance of the <see cref="ConfigureSwaggerOptions"/> class.
     /// </summary>
     /// <param name="provider">The <see cref="IApiVersionDescriptionProvider">provider</see> used to generate Swagger documents.</param>
-    public ConfigureSwaggerDefaultOptions(IApiVersionDescriptionProvider provider) => this.provider = provider;
+    public ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider) => this.provider = provider;
 
     /// <inheritdoc />
     public void Configure(SwaggerGenOptions options)
