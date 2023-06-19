@@ -10,12 +10,12 @@ internal static class DependencyInjection
     {
         services.AddControllers();
         services.AddEndpointsApiExplorer();
-        services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+        services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerDefaultOptions>();
         services.AddSwaggerGen(
             options =>
             {
                 // add a custom operation filter which sets default values
-                options.OperationFilter<AddApiVersionParameter>();
+                options.OperationFilter<AddApiVersionMetadata>();
 
                 var fileName = typeof(Program).Assembly.GetName().Name + ".xml";
                 var filePath = Path.Combine(AppContext.BaseDirectory, fileName);

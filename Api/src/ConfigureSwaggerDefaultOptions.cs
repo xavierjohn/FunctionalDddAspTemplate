@@ -13,15 +13,15 @@ using System.Text;
 /// </summary>
 /// <remarks>This allows API versioning to define a Swagger document per API version after the
 /// <see cref="IApiVersionDescriptionProvider"/> service has been resolved from the service container.</remarks>
-public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
+public class ConfigureSwaggerDefaultOptions : IConfigureOptions<SwaggerGenOptions>
 {
     private readonly IApiVersionDescriptionProvider provider;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ConfigureSwaggerOptions"/> class.
+    /// Initializes a new instance of the <see cref="ConfigureSwaggerDefaultOptions"/> class.
     /// </summary>
     /// <param name="provider">The <see cref="IApiVersionDescriptionProvider">provider</see> used to generate Swagger documents.</param>
-    public ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider) => this.provider = provider;
+    public ConfigureSwaggerDefaultOptions(IApiVersionDescriptionProvider provider) => this.provider = provider;
 
     /// <inheritdoc />
     public void Configure(SwaggerGenOptions options)
