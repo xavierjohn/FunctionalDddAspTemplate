@@ -9,7 +9,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Text;
 
 /// <summary>
-/// Configures the Swagger generation options.
+/// Configure the Swashbuckle options, which defines the document endpoints and high-level documentation (e.g. description)
 /// </summary>
 /// <remarks>This allows API versioning to define a Swagger document per API version after the
 /// <see cref="IApiVersionDescriptionProvider"/> service has been resolved from the service container.</remarks>
