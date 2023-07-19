@@ -2,5 +2,5 @@
 
 internal class Constants
 {
-    public const string FunctionalTestCategory = "Functional";
+    public const string ComponentTestCategory = nameof(ComponentTestCategory);
 }

@@ -2,7 +2,7 @@
 
 using Xunit.Categories;
 
-[Category(Constants.FunctionalTestCategory)]
+[Category(Constants.ComponentTestCategory)]
 public class DontRunOnBuildServer
 {
     [Fact]
