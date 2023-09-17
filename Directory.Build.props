@@ -27,7 +27,7 @@
   <ItemGroup>
     <InternalsVisibleTo Include="$(MSBuildProjectName).Tests" />
     <PackageReference Include="Nerdbank.GitVersioning" PrivateAssets="all" />
-    <Using Include="FunctionalDDD" />
+    <Using Include="FunctionalDDD.RailwayOrientedProgramming" />
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(IsTestProject)' == 'false' ">

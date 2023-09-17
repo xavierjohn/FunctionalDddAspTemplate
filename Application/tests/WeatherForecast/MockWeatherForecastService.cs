@@ -3,7 +3,7 @@
 using System.Threading.Tasks;
 using BestWeatherForecast.Application.Abstractions;
 using BestWeatherForecast.Domain;
-using FunctionalDDD;
+using FunctionalDDD.RailwayOrientedProgramming.Errors;
 
 internal class MockWeatherForecastService : IWeatherForecastService
 {

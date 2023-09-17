@@ -1,5 +1,7 @@
 ﻿namespace BestWeatherForecast.Domain;
 using FluentValidation;
+using FunctionalDDD.DomainDrivenDesign;
+using FunctionalDDD.FluentValidation;
 
 public class ZipCode : SimpleValueObject<string>
 {

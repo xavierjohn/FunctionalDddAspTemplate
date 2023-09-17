@@ -5,5 +5,5 @@ using Microsoft.Extensions.DependencyInjection;
 public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services)
-        => services.AddSingleton<IWeatherForecastService, WeatherForcastService>();
+        => services.AddSingleton<IWeatherForecastService, WeatherForecastService>();
 }

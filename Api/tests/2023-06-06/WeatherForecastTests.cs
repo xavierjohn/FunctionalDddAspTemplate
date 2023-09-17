@@ -2,7 +2,6 @@
 
 using System.Net;
 using System.Threading.Tasks;
-using FunctionalDDD;
 
 [Collection(TestWebApplicationFactoryCollectionFixture.Id)]
 public class WeatherForecastTests

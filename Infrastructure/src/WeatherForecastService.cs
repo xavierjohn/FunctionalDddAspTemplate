@@ -3,8 +3,9 @@
 using System.Threading.Tasks;
 using BestWeatherForecast.Application.Abstractions;
 using BestWeatherForecast.Domain;
+using FunctionalDDD.RailwayOrientedProgramming.Errors;
 
-public class WeatherForcastService : IWeatherForecastService
+public class WeatherForecastService : IWeatherForecastService
 {
     private static readonly string[] s_summaries = new[]
     {
