@@ -1,7 +1,5 @@
 ﻿namespace BestWeatherForecast.Api._2023_06_06.Controllers
 {
-    using System;
-    using System.Net;
     using Asp.Versioning;
     using BestWeatherForecast.Application.WeatherForcast;
     using BestWeatherForecast.Domain;
