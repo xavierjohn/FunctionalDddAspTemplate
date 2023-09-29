@@ -32,7 +32,7 @@ In this approach, the code is divided into a series of functions that represent 
 Each function either succeeds and moves the code along the track, or fails and sends the code down a different track.
 This approach can make error handling more explicit and easier to reason about.
 
-For details look the package [FunctionalDDD](https://github.com/xavierjohn/FunctionalDDD)
+For details look at the package [FunctionalDDD](https://github.com/xavierjohn/FunctionalDDD)
 
 ## Sample
 Here is a more elaborate sample code [BuberDinner](https://github.com/xavierjohn/BuberDinner)
