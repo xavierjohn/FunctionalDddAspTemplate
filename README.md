@@ -1,10 +1,11 @@
 # Functional DDD Template
 
-This is a functional Domain-Driven Design (DDD) template that provides a structured foundation for building applications using the functional programming paradigm. The template follows the principles of DDD and includes the CQRS (Command Query Responsibility Segregation) pattern to separate write and read operations.
+This is a clean architecture Domain-Driven Design (DDD) template that provides a structured foundation for building Web API applications using the functional programming paradigm. 
+The template follows the principles of DDD and includes the CQRS (Command Query Responsibility Segregation) pattern to separate write and read operations.
 
 ## Features
 
-#### Layered Architecture: 
+### Layered Architecture: 
 The template promotes a layered architecture approach, consisting of the API layer, application layer, domain layer, and infrastructure layer. This separation of concerns allows for modular and testable code.
 
 #### Domain-Driven Design: 
@@ -16,9 +17,30 @@ The template leverages the CQRS pattern to separate write (command) operations f
 #### Anti-Corruption Layer (ACL): 
 The template provides support for an Anti-Corruption Layer, which acts as a bridge between the domain layer and external systems. The ACL helps to maintain the integrity and consistency of the domain model when interacting with external dependencies.
 
+### Service Level Indicators
+All the API methods will emit metrics with duration and status code. This will help to monitor the service and identify the issues.
+
+To view the metrics and traces locally run the docker container. 
+Metrics can be viewed in [Prometheus](http://localhost:9090) and traces in [Zipkin](http://localhost:9411/zipkin/)
+
+
+For details look at the package [ServiceLevelIndicators](https://github.com/xavierjohn/ServiceLevelIndicators)
+
+### Railway Oriented Programming
+Railway-oriented programming is an approach to error handling that is based on the idea of a railway track.
+In this approach, the code is divided into a series of functions that represent different steps along the railway track.
+Each function either succeeds and moves the code along the track, or fails and sends the code down a different track.
+This approach can make error handling more explicit and easier to reason about.
+
+For details look the package [FunctionalDDD](https://github.com/xavierjohn/FunctionalDDD)
+
+## Sample
+Here is a more elaborate sample code [BuberDinner](https://github.com/xavierjohn/BuberDinner)
+
+
 ## Getting Started
 
-To get started with this template, All you need to do is Clone or download the repository to your local development environment, rename it and use it. This template comes with all layers already implemented along with the Unit Tests in place.
+To get started with this template, All you need to do is download the repository to your local development environment, rename it to your project and use it. This template comes with all layers already implemented along with the Unit Tests in place.
 
 ## Lets talk a little bit more about the layers implemented in the Template:
 

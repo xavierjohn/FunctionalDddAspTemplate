@@ -7,6 +7,7 @@
     using Mapster;
     using Mediator;
     using Microsoft.AspNetCore.Mvc;
+    using ServiceLevelIndicators;
 
     /// <summary>
     /// Weather forecast controller.
@@ -50,7 +51,7 @@
         [ProducesResponseType(typeof(IEnumerable<Models.WeatherForecast>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async ValueTask<ActionResult<Models.WeatherForecast>> Get(string zipCode, CancellationToken cancellationToken)
+        public async ValueTask<ActionResult<Models.WeatherForecast>> Get([CustomerResourceId] string zipCode, CancellationToken cancellationToken)
             => await ZipCode.New(zipCode)
                 .Bind(static zipCode => WeatherForecastQuery.New(zipCode))
                 .BindAsync(q => _sender.Send(q, cancellationToken))

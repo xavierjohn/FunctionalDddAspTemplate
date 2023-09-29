@@ -1,6 +1,8 @@
 ﻿using BestWeatherForecast.Api;
 using BestWeatherForecast.Application;
 using BestWeatherForecast.Infrastructure;
+using ServiceLevelIndicators;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -29,7 +31,7 @@ app.UseSwaggerUI(
     });
 
 app.UseHttpsRedirection();
-
+app.UseServiceLevelIndicatorWithApiVersioning();
 app.UseAuthorization();
 
 app.MapControllers();
