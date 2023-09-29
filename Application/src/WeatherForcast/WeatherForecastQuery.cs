@@ -1,7 +1,6 @@
 ﻿namespace BestWeatherForecast.Application.WeatherForcast;
 using BestWeatherForecast.Domain;
 using FluentValidation;
-using FunctionalDDD.FluentValidation;
 using Mediator;
 
 public class WeatherForecastQuery : IRequest<Result<WeatherForecast>>

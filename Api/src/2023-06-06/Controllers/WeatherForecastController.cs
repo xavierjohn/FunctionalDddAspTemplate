@@ -3,7 +3,7 @@
     using Asp.Versioning;
     using BestWeatherForecast.Application.WeatherForcast;
     using BestWeatherForecast.Domain;
-    using FunctionalDDD.Asp;
+    using FunctionalDDD.Results.Asp;
     using Mapster;
     using Mediator;
     using Microsoft.AspNetCore.Mvc;

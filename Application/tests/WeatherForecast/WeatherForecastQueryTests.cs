@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using BestWeatherForecast.Application.WeatherForcast;
 using BestWeatherForecast.Domain;
 using FluentAssertions;
-using FunctionalDDD.RailwayOrientedProgramming.Errors;
+using FunctionalDDD.Results.Errors;
 using Mediator;
 
 public class WeatherForecastQueryTests

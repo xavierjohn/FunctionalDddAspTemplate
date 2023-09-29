@@ -1,9 +1,9 @@
 ﻿namespace BestWeatherForecast.Domain;
 
 using System.Collections.Generic;
-using FunctionalDDD.DomainDrivenDesign;
+using FunctionalDDD.Domain;
 
-public class WeatherForecast : AggregateRoot<ZipCode>
+public class WeatherForecast : Aggregate<ZipCode>
 {
     private readonly List<DailyTemperature> dailyTemperatures = new();
 

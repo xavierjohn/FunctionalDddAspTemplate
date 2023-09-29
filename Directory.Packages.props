@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <FunctionalDDDVersion>1.1.0-alpha.13</FunctionalDDDVersion>
+    <FunctionalDDDVersion>1.1.0-alpha.18</FunctionalDDDVersion>
   </PropertyGroup>
   <!-- Runtime -->
   <ItemGroup>
@@ -13,10 +13,10 @@
     <PackageVersion Include="FunctionalDDD.DomainDrivenDesign" Version="$(FunctionalDDDVersion)" />
     <PackageVersion Include="FunctionalDDD.FluentValidation" Version="$(FunctionalDDDVersion)" />
     <PackageVersion Include="FunctionalDDD.RailwayOrientedProgramming" Version="$(FunctionalDDDVersion)" />
-    <PackageVersion Include="Mapster" Version="7.3.0" />
+    <PackageVersion Include="Mapster" Version="7.4.0" />
     <PackageVersion Include="MartinCostello.Logging.XUnit" Version="0.3.0" />
-    <PackageVersion Include="Mediator.Abstractions" Version="2.1.6" />
-    <PackageVersion Include="Mediator.SourceGenerator" Version="2.1.6" />
+    <PackageVersion Include="Mediator.Abstractions" Version="2.1.7" />
+    <PackageVersion Include="Mediator.SourceGenerator" Version="2.1.7" />
     <PackageVersion Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.11" />
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="7.0.11" />
@@ -33,8 +33,8 @@
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
     <PackageVersion Include="coverlet.collector" Version="6.0.0" />
     <PackageVersion Include="FluentAssertions" Version="6.12.0" />
-    <PackageVersion Include="xunit" Version="2.5.0" />
-    <PackageVersion Include="Xunit.DependencyInjection" Version="8.8.2" />
-    <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.0" />
+    <PackageVersion Include="xunit" Version="2.5.1" />
+    <PackageVersion Include="Xunit.DependencyInjection" Version="8.9.0" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.1" />
   </ItemGroup>
 </Project>

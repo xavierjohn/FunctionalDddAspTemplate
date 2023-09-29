@@ -1,7 +1,7 @@
 ﻿namespace Domain.Tests;
 
 using BestWeatherForecast.Domain;
-using FunctionalDDD.RailwayOrientedProgramming.Errors;
+using FunctionalDDD.Results.Errors;
 
 public class ZipCodeTests
 {
