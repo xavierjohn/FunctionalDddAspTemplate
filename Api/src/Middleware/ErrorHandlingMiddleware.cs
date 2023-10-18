@@ -32,9 +32,6 @@ internal class ErrorHandlingMiddleware : IMiddleware
             message = "An error occurred in our API. Please refer the trace id with our support team.",
         };
 
-#pragma warning disable CA1848 // Use the LoggerMessage delegates
-        _logger.LogCritical("Where did the error go?");
-#pragma warning restore CA1848 // Use the LoggerMessage delegates
         _logger.LogErrorHandlingMiddlewareMessage(exception);
         var response = new ObjectResult(result)
         {
