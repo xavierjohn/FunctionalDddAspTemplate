@@ -57,5 +57,16 @@
                 .BindAsync(q => _sender.Send(q, cancellationToken))
                 .MapAsync(r => r.Adapt<Models.WeatherForecast>())
                 .ToOkActionResultAsync(this);
+
+        /// <summary>
+        /// This method throws to show the error handling middleware handles it.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        [HttpGet("Throw")]
+        public string Throw()
+        {
+            throw new NotImplementedException("Catch me middleware.");
+        }
     }
 }
