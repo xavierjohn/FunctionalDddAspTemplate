@@ -10,7 +10,6 @@ public class ErrorHandlingMiddlewareTests
     public ErrorHandlingMiddlewareTests(TestWebApplicationFactoryFixture factory, ITestOutputHelper output)
     {
         _factory = factory;
-
         _factory.OutputHelper = output;
     }
 
