@@ -1,4 +1,5 @@
 ﻿using BestWeatherForecast.Api;
+using BestWeatherForecast.Api.Middleware;
 using BestWeatherForecast.Application;
 using BestWeatherForecast.Infrastructure;
 using ServiceLevelIndicators;
@@ -31,9 +32,9 @@ app.UseSwaggerUI(
     });
 
 app.UseHttpsRedirection();
-app.UseServiceLevelIndicatorWithApiVersioning();
 app.UseAuthorization();
-
+app.UseServiceLevelIndicatorWithApiVersioning();
+app.UseMiddleware<ErrorHandlingMiddleware>();
 app.MapControllers();
 
 app.Run();
