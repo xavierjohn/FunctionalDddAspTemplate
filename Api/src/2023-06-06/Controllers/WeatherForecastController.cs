@@ -14,6 +14,8 @@
     /// </summary>
     [ApiController]
     [ApiVersion("2023-06-06")]
+    [Consumes("application/json")]
+    [Produces("application/json")]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
@@ -31,7 +33,7 @@
         /// <param name="cancellationToken">Cancellation Token.</param>
         /// <returns></returns>
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<Models.WeatherForecast>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Models.WeatherForecast), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async ValueTask<ActionResult<Models.WeatherForecast>> GetRedmond(CancellationToken cancellationToken)
@@ -48,7 +50,7 @@
         /// <param name="cancellationToken">Cancellation Token.</param>
         /// <returns></returns>
         [HttpGet("{zipCode}")]
-        [ProducesResponseType(typeof(IEnumerable<Models.WeatherForecast>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Models.WeatherForecast), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async ValueTask<ActionResult<Models.WeatherForecast>> Get([CustomerResourceId] string zipCode, CancellationToken cancellationToken)
