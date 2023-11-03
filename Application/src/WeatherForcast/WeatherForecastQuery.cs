@@ -7,7 +7,7 @@ public class WeatherForecastQuery : IRequest<Result<WeatherForecast>>
 {
     public ZipCode ZipCode { get; }
 
-    public static Result<WeatherForecastQuery> New(ZipCode zipCode)
+    public static Result<WeatherForecastQuery> TryCreate(ZipCode zipCode)
         => s_validator.ValidateToResult(new WeatherForecastQuery(zipCode));
 
     private WeatherForecastQuery(ZipCode zipCode) => ZipCode = zipCode;

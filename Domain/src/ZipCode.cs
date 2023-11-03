@@ -1,6 +1,5 @@
 ﻿namespace BestWeatherForecast.Domain;
 using FluentValidation;
-using FunctionalDDD.Domain;
 
 public class ZipCode : ScalarValueObject<string>
 {
@@ -8,7 +7,7 @@ public class ZipCode : ScalarValueObject<string>
     {
     }
 
-    public static Result<ZipCode> New(string value)
+    public static Result<ZipCode> TryCreate(string value)
     {
         var zipCode = new ZipCode(value);
         return s_validation.ValidateToResult(zipCode);

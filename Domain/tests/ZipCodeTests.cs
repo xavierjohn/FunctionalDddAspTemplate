@@ -1,7 +1,6 @@
 ﻿namespace Domain.Tests;
 
 using BestWeatherForecast.Domain;
-using FunctionalDDD.Results.Errors;
 
 public class ZipCodeTests
 {
@@ -10,7 +9,7 @@ public class ZipCodeTests
     [InlineData(null)]
     public void Cannot_create_empty_zip(string zip)
     {
-        var result = ZipCode.New(zip);
+        var result = ZipCode.TryCreate(zip);
 
         result.IsFailure.Should().BeTrue();
         var error = (ValidationError)result.Error;
@@ -24,7 +23,7 @@ public class ZipCodeTests
     [InlineData("ABCDE")]
     public void Cannot_create_invalid_zip(string zip)
     {
-        var result = ZipCode.New(zip);
+        var result = ZipCode.TryCreate(zip);
 
         result.IsFailure.Should().BeTrue();
         var error = (ValidationError)result.Error;
@@ -36,7 +35,7 @@ public class ZipCodeTests
     [InlineData("98052")]
     public void Can_create_valid_zip(string zip)
     {
-        var result = ZipCode.New(zip);
+        var result = ZipCode.TryCreate(zip);
 
         result.IsSuccess.Should().BeTrue();
     }
