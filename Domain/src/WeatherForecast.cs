@@ -1,7 +1,6 @@
 ﻿namespace BestWeatherForecast.Domain;
 
 using System.Collections.Generic;
-using FunctionalDDD.Domain;
 
 public class WeatherForecast : Aggregate<ZipCode>
 {

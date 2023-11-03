@@ -3,7 +3,6 @@
     using Asp.Versioning;
     using BestWeatherForecast.Application.WeatherForcast;
     using BestWeatherForecast.Domain;
-    using FunctionalDDD.Asp;
     using Mapster;
     using Mediator;
     using Microsoft.AspNetCore.Mvc;
@@ -37,8 +36,8 @@
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async ValueTask<ActionResult<Models.WeatherForecast>> GetRedmond(CancellationToken cancellationToken)
-            => await ZipCode.New("98052")
-                .Bind(static zipCode => WeatherForecastQuery.New(zipCode))
+            => await ZipCode.TryCreate("98052")
+                .Bind(static zipCode => WeatherForecastQuery.TryCreate(zipCode))
                 .BindAsync(q => _sender.Send(q, cancellationToken))
                 .MapAsync(r => r.Adapt<Models.WeatherForecast>())
                 .ToOkActionResultAsync(this);
@@ -54,8 +53,8 @@
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async ValueTask<ActionResult<Models.WeatherForecast>> Get([CustomerResourceId] string zipCode, CancellationToken cancellationToken)
-            => await ZipCode.New(zipCode)
-                .Bind(static zipCode => WeatherForecastQuery.New(zipCode))
+            => await ZipCode.TryCreate(zipCode)
+                .Bind(static zipCode => WeatherForecastQuery.TryCreate(zipCode))
                 .BindAsync(q => _sender.Send(q, cancellationToken))
                 .MapAsync(r => r.Adapt<Models.WeatherForecast>())
                 .ToOkActionResultAsync(this);

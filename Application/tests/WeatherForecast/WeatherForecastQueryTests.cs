@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using BestWeatherForecast.Application.WeatherForcast;
 using BestWeatherForecast.Domain;
 using FluentAssertions;
-using FunctionalDDD.Results.Errors;
 using Mediator;
 
 public class WeatherForecastQueryTests
@@ -17,8 +16,8 @@ public class WeatherForecastQueryTests
     public async Task Will_get_weather_forecast_for_Redmond()
     {
         // Arrange
-        var query = ZipCode.New("98052")
-            .Bind(WeatherForecastQuery.New)
+        var query = ZipCode.TryCreate("98052")
+            .Bind(WeatherForecastQuery.TryCreate)
             .Value;
 
         // Act
@@ -50,8 +49,8 @@ public class WeatherForecastQueryTests
     public async Task Will_return_NotFound_from_unknown_zip()
     {
         // Arrange
-        var query = ZipCode.New("12345")
-            .Bind(WeatherForecastQuery.New)
+        var query = ZipCode.TryCreate("12345")
+            .Bind(WeatherForecastQuery.TryCreate)
             .Value;
 
         // Act

@@ -2,5 +2,5 @@
 
 internal class Constants
 {
-    public const string ComponentTestCategory = nameof(ComponentTestCategory);
+    public const string AntiCorruptionLayerTests = nameof(AntiCorruptionLayerTests);
 }
