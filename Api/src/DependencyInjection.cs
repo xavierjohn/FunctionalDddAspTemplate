@@ -23,6 +23,7 @@ internal static class DependencyInjection
             {
                 // add a custom operation filter which sets default values
                 options.OperationFilter<AddApiVersionMetadata>();
+                options.OperationFilter<AddTraceParentParameter>();
 
                 var fileName = typeof(Program).Assembly.GetName().Name + ".xml";
                 var filePath = Path.Combine(AppContext.BaseDirectory, fileName);
