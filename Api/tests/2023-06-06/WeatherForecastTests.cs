@@ -17,7 +17,7 @@ public class WeatherForecastTests
         var client = _factory.CreateClient();
 
         // Act
-        var response = await client.GetAsync("/WeatherForecast/?api-version=2023-06-06");
+        var response = await client.GetAsync("api/WeatherForecast/?api-version=2023-06-06");
 
         // Assert
         response.EnsureSuccessStatusCode();
@@ -54,7 +54,7 @@ public class WeatherForecastTests
         var client = _factory.CreateClient();
 
         // Act
-        var response = await client.GetAsync("/WeatherForecast/75014?api-version=2023-06-06");
+        var response = await client.GetAsync("api/WeatherForecast/75014?api-version=2023-06-06");
 
         // Assert
         response.EnsureSuccessStatusCode();
@@ -91,7 +91,7 @@ public class WeatherForecastTests
         var client = _factory.CreateClient();
 
         // Act
-        var response = await client.GetAsync("/WeatherForecast/12345?api-version=2023-06-06");
+        var response = await client.GetAsync("api/WeatherForecast/12345?api-version=2023-06-06");
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.NotFound);
