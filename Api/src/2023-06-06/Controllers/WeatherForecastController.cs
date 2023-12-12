@@ -15,7 +15,7 @@
     [ApiVersion("2023-06-06")]
     [Consumes("application/json")]
     [Produces("application/json")]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private readonly ISender _sender;
