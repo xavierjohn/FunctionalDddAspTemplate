@@ -14,8 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Acl\src\AntiCorruptionLayer.csproj" />
     <ProjectReference Include="..\..\Application\src\Application.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\src\Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

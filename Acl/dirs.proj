@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.Build.Traversal">
     <ItemGroup Label="source">
-        <ProjectReference Include="src\Infrastructure.csproj" />
+        <ProjectReference Include="src\AntiCorrutionLayer.csproj" />
     </ItemGroup>
 
     <ItemGroup Label="test">
-	  <ProjectReference Include="tests\Infrastructure.Tests.csproj" />
+	  <ProjectReference Include="tests\AntiCorrutionLayer.Tests.csproj" />
     </ItemGroup>
 
 </Project>

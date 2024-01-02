@@ -1,4 +1,4 @@
-﻿namespace BestWeatherForecast.Infrastructure;
+﻿namespace BestWeatherForecast.AntiCorruptionLayer;
 
 using System.Threading.Tasks;
 using BestWeatherForecast.Application.Abstractions;

@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Tests;
+﻿namespace AnitCorruptionLayer.Tests;
 
 using Xunit.Categories;
 

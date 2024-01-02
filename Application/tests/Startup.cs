@@ -9,6 +9,6 @@ public class Startup
             .ConfigureServices((context, services) =>
             {
                 services.AddApplication()
-                .AddMockInfrastructure();
+                .AddMockAntiCorruptionLayer();
             });
 }
