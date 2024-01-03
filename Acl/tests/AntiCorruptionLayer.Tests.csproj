@@ -3,6 +3,6 @@
     <PackageReference Include="xunit.categories" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\Infrastructure.csproj" />
+    <ProjectReference Include="..\src\AntiCorruptionLayer.csproj" />
   </ItemGroup>
 </Project>

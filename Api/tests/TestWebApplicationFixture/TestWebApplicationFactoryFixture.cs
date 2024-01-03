@@ -38,7 +38,7 @@ public class TestWebApplicationFactoryFixture : WebApplicationFactory<Program>, 
                     return;
 
                 services.RemoveAll(typeof(IWeatherForecastService));
-                services.AddMockInfrastructure();
+                services.AddMockAntiCorruptionLayer();
             });
     }
 }
