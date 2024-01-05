@@ -7,9 +7,9 @@ public class ZipCodeTests
     [Theory]
     [InlineData("")]
     [InlineData(null)]
-    public void Cannot_create_empty_zip(string zip)
+    public void Cannot_create_empty_zip(string? zip)
     {
-        var result = ZipCode.TryCreate(zip);
+        var result = ZipCode.TryCreate(zip!);
 
         result.IsFailure.Should().BeTrue();
         var error = (ValidationError)result.Error;

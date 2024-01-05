@@ -47,10 +47,10 @@ internal static class DependencyInjection
 
         services.AddOpenTelemetry()
             .ConfigureResource(configureResource)
-            .WithMetrics(options =>
+            .WithMetrics(builder =>
             {
-                options.AddMeter(ApiMeters.MeterName);
-                options.AddOtlpExporter();
+                builder.AddMeter(ApiMeters.MeterName);
+                builder.AddOtlpExporter();
             });
 
         services.AddSingleton<ApiMeters>();

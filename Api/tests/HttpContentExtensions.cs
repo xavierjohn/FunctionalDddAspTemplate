@@ -5,15 +5,20 @@ using System.Text.Json.Serialization;
 
 public static class HttpContentExtensions
 {
+    static readonly JsonSerializerOptions s_options = new()
+    {
+        Converters =
+        {
+            new JsonStringEnumConverter()
+        }
+    };
+
     public static async Task<T> ReadAsAsyncWithAssertion<T>(this HttpContent content)
     {
-        var options = new JsonSerializerOptions();
-        options.Converters.Add(new JsonStringEnumConverter());
-
         var str = await content.ReadAsStringAsync();
         str.Should().NotBeNull();
 
-        var t = JsonSerializer.Deserialize<T>(str, options);
+        var t = JsonSerializer.Deserialize<T>(str, s_options);
         if (t == null)
             throw new InvalidOperationException("Failed to deserialize");
 
