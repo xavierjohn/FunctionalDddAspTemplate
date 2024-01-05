@@ -42,13 +42,14 @@ internal static class DependencyInjection
     private static IServiceCollection AddOpenTelemetryAndSLI(this IServiceCollection services)
     {
         Action<ResourceBuilder> configureResource = r => r.AddService(
-            serviceName: "ApiService",
+            serviceName: "BestWeatherForcastService",
             serviceVersion: typeof(Program).Assembly.GetName().Version?.ToString() ?? "unknown");
 
         services.AddOpenTelemetry()
             .ConfigureResource(configureResource)
             .WithMetrics(builder =>
             {
+                builder.AddAspNetCoreInstrumentation();
                 builder.AddMeter(ApiMeters.MeterName);
                 builder.AddOtlpExporter();
             });
