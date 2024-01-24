@@ -27,7 +27,7 @@
     <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.7.0" />
     <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.7.0" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.7.0" />
-    <PackageVersion Include="ServiceLevelIndicators.Asp.ApiVersioning" Version="8.0.0-alpha.6" />
+    <PackageVersion Include="ServiceLevelIndicators.Asp.ApiVersioning" Version="8.0.0-alpha.7" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageVersion Include="T4.Build" Version="0.2.4" />
     <PackageVersion Include="xunit.categories" Version="2.0.8" />

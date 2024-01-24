@@ -62,7 +62,7 @@ internal static class DependencyInjection
             options.LocationId = ServiceLevelIndicator.CreateLocationId("public", "West US 3");
         })
         .AddMvc()
-        .AddApiVersionEnrichment();
+        .AddApiVersion();
 
         return services;
     }
