@@ -15,25 +15,28 @@ builder.Services
 
 var app = builder.Build();
 
-app.UseSwagger();
-app.UseSwaggerUI(
-    options =>
-    {
-        options.RoutePrefix = string.Empty; // make home page the swagger UI
-        var descriptions = app.DescribeApiVersions();
-
-        // build a swagger endpoint for each discovered API version
-        foreach (var description in descriptions)
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(
+        options =>
         {
-            var url = $"/swagger/{description.GroupName}/swagger.json";
-            var name = description.GroupName.ToUpperInvariant();
-            options.SwaggerEndpoint(url, name);
-        }
-    });
+            options.RoutePrefix = string.Empty; // make home page the swagger UI
+            var descriptions = app.DescribeApiVersions();
+
+            // build a swagger endpoint for each discovered API version
+            foreach (var description in descriptions)
+            {
+                var url = $"/swagger/{description.GroupName}/swagger.json";
+                var name = description.GroupName.ToUpperInvariant();
+                options.SwaggerEndpoint(url, name);
+            }
+        });
+}
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
-app.UseServiceLevelIndicatorWithApiVersioning();
+app.UseServiceLevelIndicator();
 app.UseMiddleware<ErrorHandlingMiddleware>();
 app.MapControllers();
 
