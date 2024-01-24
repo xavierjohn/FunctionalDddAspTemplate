@@ -60,7 +60,10 @@ internal static class DependencyInjection
         {
             options.CustomerResourceId = "ServiceId";
             options.LocationId = ServiceLevelIndicator.CreateLocationId("public", "West US 3");
-        });
+        })
+        .AddMvc()
+        .AddApiVersionEnrichment();
+
         return services;
     }
 }

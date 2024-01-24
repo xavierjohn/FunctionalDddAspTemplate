@@ -36,7 +36,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
-app.UseServiceLevelIndicatorWithApiVersioning();
+app.UseServiceLevelIndicator();
 app.UseMiddleware<ErrorHandlingMiddleware>();
 app.MapControllers();
 
