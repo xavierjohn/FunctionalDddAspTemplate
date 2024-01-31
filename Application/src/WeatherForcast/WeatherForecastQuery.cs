@@ -3,7 +3,7 @@ using BestWeatherForecast.Domain;
 using FluentValidation;
 using Mediator;
 
-public class WeatherForecastQuery : IRequest<Result<WeatherForecast>>
+public class WeatherForecastQuery : IQuery<Result<WeatherForecast>>
 {
     public ZipCode ZipCode { get; }
 
