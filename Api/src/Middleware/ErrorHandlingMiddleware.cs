@@ -37,7 +37,6 @@ internal class ErrorHandlingMiddleware : IMiddleware
 
         var ctx = new ProblemDetailsContext()
         {
-            Exception = exception,
             HttpContext = context,
             ProblemDetails =
             {
