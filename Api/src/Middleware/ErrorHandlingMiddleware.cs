@@ -44,6 +44,7 @@ internal class ErrorHandlingMiddleware : IMiddleware
                 Detail = "An error occurred in our API. Please refer the trace id with our support team.",
             }
         };
+        ctx.HttpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
         var traceId = Activity.Current?.Id ?? context.TraceIdentifier;
         ctx.ProblemDetails.Extensions["traceId"] = traceId;
 
