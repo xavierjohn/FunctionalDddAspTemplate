@@ -1,5 +1,4 @@
 ﻿using BestWeatherForecast.Api;
-using BestWeatherForecast.Api.Middleware;
 using BestWeatherForecast.Application;
 using BestWeatherForecast.AntiCorruptionLayer;
 using ServiceLevelIndicators;
@@ -34,10 +33,10 @@ if (app.Environment.IsDevelopment())
         });
 }
 
+app.UseExceptionHandler();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseServiceLevelIndicator();
-app.UseMiddleware<ErrorHandlingMiddleware>();
 app.MapControllers();
 
 app.Run();
