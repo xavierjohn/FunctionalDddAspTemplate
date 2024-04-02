@@ -1,6 +1,7 @@
 ﻿namespace BestWeatherForecast.Api.Middleware;
 
 using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 /// <summary>
@@ -44,6 +45,8 @@ internal class ErrorHandlingMiddleware : IMiddleware
                 Detail = "An error occurred in our API. Please refer the trace id with our support team.",
             }
         };
+        var traceId = Activity.Current?.Id ?? context.TraceIdentifier;
+        ctx.ProblemDetails.Extensions["traceId"] = traceId;
 
         await problem.TryWriteAsync(ctx);
     }
