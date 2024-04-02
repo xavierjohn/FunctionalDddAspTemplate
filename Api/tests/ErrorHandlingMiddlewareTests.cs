@@ -1,5 +1,8 @@
 ﻿namespace Api.Tests;
 
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.Net.Http.Json;
 using Xunit.Abstractions;
 
 [Collection(TestWebApplicationFactoryCollectionFixture.Id)]
@@ -28,9 +31,18 @@ public class ErrorHandlingMiddlewareTests
 
         // Assert
         response.StatusCode.Should().Be(System.Net.HttpStatusCode.InternalServerError);
-        var errorResponse = await response.Content.ReadAsExample(new { traceId = default(string), message = default(string) });
-        errorResponse.traceId.Should().Be(traceId);
-        errorResponse.message.Should().Be("An error occurred in our API. Please refer the trace id with our support team.");
+        var problemDetailsWithTrace = await response.Content.ReadFromJsonAsync<ProblemDetailsWithTrace>();
+        problemDetailsWithTrace.Should().NotBeNull();
+        Assert.NotNull(problemDetailsWithTrace);
+        problemDetailsWithTrace.Status.Should().Be(StatusCodes.Status500InternalServerError);
+        problemDetailsWithTrace.Title.Should().Be("An error occurred while processing your request.");
+        problemDetailsWithTrace.Detail.Should().Be("An error occurred in our API. Please refer the trace id with our support team.");
+        problemDetailsWithTrace.Type.Should().Be("https://tools.ietf.org/html/rfc9110#section-15.6.1");
+        problemDetailsWithTrace.TraceId.Should().Contain(traceId);
     }
 
+    public class ProblemDetailsWithTrace : ProblemDetails
+    {
+        public string TraceId { get; set; } = string.Empty;
+    }
 }

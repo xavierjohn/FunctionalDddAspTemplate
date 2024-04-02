@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using ServiceLevelIndicators;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -13,10 +14,12 @@ internal static class DependencyInjection
 {
     public static IServiceCollection AddPresentation(this IServiceCollection services)
     {
-        services.AddOpenTelemetryAndSLI();
+        services.ConfigureOpenTelemetry();
+        services.ConfigureServiceLevelIndicators();
         services.AddProblemDetails();
         services.AddControllers();
         services.AddEndpointsApiExplorer();
+        services.AddMvcCore().AddApiExplorer();
         services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
         services.AddSwaggerGen(
             options =>
@@ -39,9 +42,9 @@ internal static class DependencyInjection
         return services;
     }
 
-    private static IServiceCollection AddOpenTelemetryAndSLI(this IServiceCollection services)
+    private static IServiceCollection ConfigureOpenTelemetry(this IServiceCollection services)
     {
-        Action<ResourceBuilder> configureResource = r => r.AddService(
+        static void configureResource(ResourceBuilder r) => r.AddService(
             serviceName: "BestWeatherForcastService",
             serviceVersion: typeof(Program).Assembly.GetName().Version?.ToString() ?? "unknown");
 
@@ -50,15 +53,28 @@ internal static class DependencyInjection
             .WithMetrics(builder =>
             {
                 builder.AddAspNetCoreInstrumentation();
-                builder.AddMeter(ApiMeters.MeterName);
+                builder.AddMeter(
+                    ApiMeters.MeterName,
+                    "Microsoft.AspNetCore.Hosting",
+                    "Microsoft.AspNetCore.Server.Kestrel",
+                    "System.Net.Http");
+                builder.AddOtlpExporter();
+            })
+            .WithTracing(builder =>
+            {
+                builder.AddAspNetCoreInstrumentation();
                 builder.AddOtlpExporter();
             });
 
         services.AddSingleton<ApiMeters>();
+        return services;
+    }
+
+    private static IServiceCollection ConfigureServiceLevelIndicators(this IServiceCollection services)
+    {
         services.TryAddEnumerable(ServiceDescriptor.Singleton<IConfigureOptions<ServiceLevelIndicatorOptions>, ConfigureServiceLevelIndicatorOptions>());
         services.AddServiceLevelIndicator(options =>
         {
-            options.CustomerResourceId = "ServiceId";
             options.LocationId = ServiceLevelIndicator.CreateLocationId("public", "West US 3");
         })
         .AddMvc()

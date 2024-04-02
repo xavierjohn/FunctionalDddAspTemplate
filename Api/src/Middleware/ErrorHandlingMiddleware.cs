@@ -1,6 +1,7 @@
 ﻿namespace BestWeatherForecast.Api.Middleware;
 
 using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 /// <summary>
@@ -24,21 +25,30 @@ internal class ErrorHandlingMiddleware : IMiddleware
         }
     }
 
-    private Task HandleExceptionAsync(HttpContext context, Exception exception)
+    private async Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
-        var result = new
-        {
-            traceId = Activity.Current?.TraceId.ToString(),
-            message = "An error occurred in our API. Please refer the trace id with our support team.",
-        };
-
         _logger.LogErrorHandlingMiddlewareMessage(exception);
-        var response = new ObjectResult(result)
+
+        // if you know you're in MVC-land, you can fall back to ProblemDetailsFactory
+        if (context.RequestServices.GetService<IProblemDetailsService>() is not { } problem)
         {
-            StatusCode = StatusCodes.Status500InternalServerError,
+            return;
+        }
+
+        var ctx = new ProblemDetailsContext()
+        {
+            HttpContext = context,
+            ProblemDetails =
+            {
+                Status = StatusCodes.Status500InternalServerError,
+                Detail = "An error occurred in our API. Please refer the trace id with our support team.",
+            }
         };
-        var actionContext = new ActionContext() { HttpContext = context };
-        return response.ExecuteResultAsync(actionContext);
+        ctx.HttpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
+        var traceId = Activity.Current?.Id ?? context.TraceIdentifier;
+        ctx.ProblemDetails.Extensions["traceId"] = traceId;
+
+        await problem.TryWriteAsync(ctx);
     }
 }
 
