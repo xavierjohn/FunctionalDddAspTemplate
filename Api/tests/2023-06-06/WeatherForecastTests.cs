@@ -1,7 +1,9 @@
 ﻿namespace Api.Tests._2023_06_06;
 
 using System.Net;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 [Collection(TestWebApplicationFactoryCollectionFixture.Id)]
 public class WeatherForecastTests
@@ -95,7 +97,13 @@ public class WeatherForecastTests
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.NotFound);
-        var message = await response.Content.ReadAsStringAsync();
-        message.Should().Be("{\"code\":\"not.found.error\",\"message\":\"No weather forecast found for the zip code.\",\"target\":\"12345\"}");
+        var problemDetails = await response.Content.ReadFromJsonAsync<ProblemDetails>();
+        problemDetails.Should().NotBeNull();
+        Assert.NotNull(problemDetails);
+        problemDetails.Status.Should().Be(404);
+        problemDetails.Title.Should().Be("Not Found");
+        problemDetails.Detail.Should().Be("No weather forecast found for the zip code.");
+        problemDetails.Type.Should().Be("https://tools.ietf.org/html/rfc9110#section-15.5.5");
+        problemDetails.Instance.Should().Be("12345");
     }
 }

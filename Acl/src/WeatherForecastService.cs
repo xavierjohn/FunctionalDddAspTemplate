@@ -24,7 +24,7 @@ public class WeatherForecastService : IWeatherForecastService
         {
             "98052" => Result.Success(new WeatherForecast(zipCode, dailyTempratures)),
             "75014" => Result.Success(new WeatherForecast(zipCode, dailyTempratures)),
-            _ => Result.Failure<WeatherForecast>(Error.NotFound("No weather forecast found for the zip code.", target: zipCode))
+            _ => Result.Failure<WeatherForecast>(Error.NotFound("No weather forecast found for the zip code.", instance: zipCode))
         });
     }
 }
