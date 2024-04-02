@@ -74,7 +74,6 @@ internal static class DependencyInjection
         services.TryAddEnumerable(ServiceDescriptor.Singleton<IConfigureOptions<ServiceLevelIndicatorOptions>, ConfigureServiceLevelIndicatorOptions>());
         services.AddServiceLevelIndicator(options =>
         {
-            options.CustomerResourceId = "ServiceId";
             options.LocationId = ServiceLevelIndicator.CreateLocationId("public", "West US 3");
         })
         .AddMvc()
