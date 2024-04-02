@@ -36,9 +36,9 @@ public class ErrorHandlingMiddlewareTests
         Assert.NotNull(problemDetailsWithTrace);
         problemDetailsWithTrace.Status.Should().Be(StatusCodes.Status500InternalServerError);
         problemDetailsWithTrace.Title.Should().Be("An error occurred while processing your request.");
-        // problemDetailsWithTrace.Detail.Should().Be("An error occurred in our API. Please refer the trace id with our support team.");
         problemDetailsWithTrace.Type.Should().Be("https://tools.ietf.org/html/rfc9110#section-15.6.1");
         problemDetailsWithTrace.TraceId.Should().Contain(traceId);
+        problemDetailsWithTrace.Detail.Should().Be("An error occurred in our API. Please refer the trace id with our support team.");
     }
 
     public class ProblemDetailsWithTrace : ProblemDetails
