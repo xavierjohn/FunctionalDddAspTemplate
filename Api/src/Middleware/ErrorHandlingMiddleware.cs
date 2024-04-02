@@ -24,23 +24,28 @@ internal class ErrorHandlingMiddleware : IMiddleware
         }
     }
 
-    private Task HandleExceptionAsync(HttpContext context, Exception exception)
+    private async Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
-        var problemDetails = new ProblemDetails
-        {
-            Title = exception.GetType().Name,
-            Status = StatusCodes.Status500InternalServerError,
-            Detail = "An error occurred in our API. Please refer the trace id with our support team.",
-            Instance = Activity.Current?.Id,
-        };
         _logger.LogErrorHandlingMiddlewareMessage(exception);
 
-        var response = new ObjectResult(problemDetails)
+        // if you know you're in MVC-land, you can fall back to ProblemDetailsFactory
+        if (context.RequestServices.GetService<IProblemDetailsService>() is not { } problem)
         {
-            StatusCode = StatusCodes.Status500InternalServerError,
+            return;
+        }
+
+        var ctx = new ProblemDetailsContext()
+        {
+            Exception = exception,
+            HttpContext = context,
+            ProblemDetails =
+            {
+                Status = StatusCodes.Status500InternalServerError,
+                Detail = "An error occurred in our API. Please refer the trace id with our support team.",
+            }
         };
-        var actionContext = new ActionContext() { HttpContext = context };
-        return response.ExecuteResultAsync(actionContext);
+
+        await problem.TryWriteAsync(ctx);
     }
 }
 
