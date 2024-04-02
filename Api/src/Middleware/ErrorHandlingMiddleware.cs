@@ -28,9 +28,9 @@ internal class ErrorHandlingMiddleware : IMiddleware
     {
         var problemDetails = new ProblemDetails
         {
+            Title = exception.GetType().Name,
             Status = StatusCodes.Status500InternalServerError,
-            Title = "An error occurred in our API. Please refer the trace id with our support team.",
-            Detail = exception.Message,
+            Detail = "An error occurred in our API. Please refer the trace id with our support team.",
             Instance = Activity.Current?.Id,
         };
         _logger.LogErrorHandlingMiddlewareMessage(exception);
