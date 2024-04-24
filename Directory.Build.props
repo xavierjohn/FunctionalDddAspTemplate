@@ -26,7 +26,6 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="$(MSBuildProjectName).Tests" />
-    <PackageReference Include="Nerdbank.GitVersioning" PrivateAssets="all" />
     <Using Include="FunctionalDdd" />
   </ItemGroup>
 

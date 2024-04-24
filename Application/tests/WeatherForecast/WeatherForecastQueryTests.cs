@@ -60,7 +60,7 @@ public class WeatherForecastQueryTests
         result.IsFailure.Should().BeTrue();
         result.Error.Should().BeOfType<NotFoundError>();
         result.Error.Code.Should().Be("not.found.error");
-        result.Error.Message.Should().Be("No weather forecast found for the zip code.");
+        result.Error.Detail.Should().Be("No weather forecast found for the zip code.");
         result.Error.Instance.Should().Be("12345");
     }
 }
