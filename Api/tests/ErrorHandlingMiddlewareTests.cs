@@ -17,7 +17,7 @@ public class ErrorHandlingMiddlewareTests
     }
 
     [Fact]
-    public async void Unhandled_exceptions_are_handled_by_middleware()
+    public async Task Unhandled_exceptions_are_handled_by_middleware()
     {
         // Arrange
         var client = _factory.CreateClient();
