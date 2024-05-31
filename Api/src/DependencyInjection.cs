@@ -1,6 +1,5 @@
 ﻿namespace BestWeatherForecast.Api;
 
-using BestWeatherForecast.Api.Middleware;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
@@ -37,7 +36,6 @@ internal static class DependencyInjection
         services.AddApiVersioning()
                 .AddMvc()
                 .AddApiExplorer();
-        services.AddScoped<ErrorHandlingMiddleware>();
         _2023_06_06.Models.ConfigureMapster.Config();
         return services;
     }
