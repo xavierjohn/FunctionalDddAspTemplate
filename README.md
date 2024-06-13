@@ -43,6 +43,10 @@ For details look at the package [FunctionalDDD](https://github.com/xavierjohn/Fu
 
 Here is a more elaborate sample code [BuberDinner](https://github.com/xavierjohn/BuberDinner)
 
+## Writing High Quality Services
+
+[![Watch the video](https://img.youtube.com/vi/qpEXhw-TTW0/hqdefault.jpg)](https://www.youtube.com/embed/qpEXhw-TTW0)
+
 ## Getting Started
 
 To get started with this template, All you need to do is download the repository to your local development environment, rename it to your project and use it. This template comes with all layers already implemented along with the Unit Tests in place.
