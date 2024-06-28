@@ -18,7 +18,6 @@ internal static class DependencyInjection
         services.ConfigureServiceLevelIndicators();
         services.AddProblemDetails();
         services.AddControllers();
-        services.AddMvcCore().AddApiExplorer();
         services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
         services.AddSwaggerGen(
             options =>
