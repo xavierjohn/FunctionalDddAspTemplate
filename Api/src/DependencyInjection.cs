@@ -1,5 +1,6 @@
 ﻿namespace BestWeatherForecast.Api;
 
+using Azure.Core;
 using BestWeatherForecast.Api.Middleware;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -73,7 +74,7 @@ internal static class DependencyInjection
         services.TryAddEnumerable(ServiceDescriptor.Singleton<IConfigureOptions<ServiceLevelIndicatorOptions>, ConfigureServiceLevelIndicatorOptions>());
         services.AddServiceLevelIndicator(options =>
         {
-            options.LocationId = ServiceLevelIndicator.CreateLocationId("public", "West US 3");
+            options.LocationId = ServiceLevelIndicator.CreateLocationId("public", AzureLocation.WestUS3.Name);
         })
         .AddMvc()
         .AddApiVersion();

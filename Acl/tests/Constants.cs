@@ -1,4 +1,4 @@
-﻿namespace AnitCorruptionLayer.Tests;
+﻿namespace AntiCorruptionLayer.Tests;
 
 internal class Constants
 {
