@@ -71,3 +71,18 @@ The Anti-Corruption Layer (ACL), which shields the domain layer from the complex
 The API layer acts as the contract between the external world and the domain. It defines the communication endpoints and handles the serialization and deserialization of data. The API layer provides a standardized way for clients to send commands and queries to the system, adhering to the domain's language and concepts.
 
 In summary, the API layer acts as the contract between the domain and the external world, the application layer implements the business logic using abstractions and follows the CQRS pattern, the domain layer represents the core business models and applies business rules, and the infrastructure layer is the ACL that translates the domain abstractions to external systems. This layered architecture with the CQRS pattern and the ACL helps separate concerns, maintain a clean design, and enable functional Domain-Driven Design practices.
+
+## Convention over configuration for resource names
+
+When deploying a service across multiple regions and environments, using convention over configuration for resource names can help prevent configuration errors.
+By setting two configuration parameters, `Region` and `Environment`, resource names can be determined using `EnvironmentOptions` and its extensions.
+Setting these values through configuration files or environment variables can simplify the process and reduce the need for numerous resource-specific settings in the configuration files.
+
+```json
+{
+  "EnvironmentOptions": {
+    "Environment": "local",
+    "Region": "local"
+  },
+}
+```
