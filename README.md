@@ -75,14 +75,18 @@ In summary, the API layer acts as the contract between the domain and the extern
 ## Convention over configuration for resource names
 
 When deploying a service across multiple regions and environments, using convention over configuration for resource names can help prevent configuration errors.
-By setting two configuration parameters, `Region` and `Environment`, resource names can be determined using `EnvironmentOptions` and its extensions.
+By setting two configuration parameters, `RegionShortName` and `Environment`, resource names can be determined using `EnvironmentOptions` and its extensions.
+
+The `Region` value can be used for the resource group name and in `LocationId` parameter of the Service Level Indicators.
+
 Setting these values through configuration files or environment variables can simplify the process and reduce the need for numerous resource-specific settings in the configuration files.
 
 ```json
 {
   "EnvironmentOptions": {
-    "Environment": "local",
-    "Region": "local"
+    "Environment": "test",
+    "Region": "westus2",
+    "RegionShortName": "usw2"
   },
 }
 ```

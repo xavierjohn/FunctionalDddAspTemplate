@@ -6,6 +6,8 @@ public class EnvironmentOptions
 
     public string Region { get; set; } = "local";
 
+    public string RegionShortName { get; set; } = "local";
+
     public string Environment { get; set; } = "local";
 
     public string Cloud { get; set; } = "Public";
