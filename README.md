@@ -45,7 +45,7 @@ Here is a more elaborate sample code [BuberDinner](https://github.com/xavierjohn
 
 ## Writing High Quality Services
 
-[![Watch the video](https://img.youtube.com/vi/qpEXhw-TTW0/hqdefault.jpg)](https://www.youtube.com/embed/qpEXhw-TTW0)
+[![Watch the video](https://img.youtube.com/vi/6_1CAgskxfM/hqdefault.jpg)](https://www.youtube.com/embed/6_1CAgskxfM)
 
 ## Getting Started
 
