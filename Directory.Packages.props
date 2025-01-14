@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <FunctionalDddVersion>2.0.0-alpha.39</FunctionalDddVersion>
+    <FunctionalDddVersion>2.0.0-alpha.62</FunctionalDddVersion>
   </PropertyGroup>
   <!-- Runtime -->
   <ItemGroup>

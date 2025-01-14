@@ -40,7 +40,7 @@
                 .Bind(static zipCode => WeatherForecastQuery.TryCreate(zipCode))
                 .BindAsync(q => _sender.Send(q, cancellationToken))
                 .MapAsync(r => r.Adapt<Models.WeatherForecast>())
-                .ToOkActionResultAsync(this);
+                .ToActionResultAsync(this);
 
         /// <summary>
         /// Get the weather forecast for the given zip code.
@@ -57,7 +57,7 @@
                 .Bind(static zipCode => WeatherForecastQuery.TryCreate(zipCode))
                 .BindAsync(q => _sender.Send(q, cancellationToken))
                 .MapAsync(r => r.Adapt<Models.WeatherForecast>())
-                .ToOkActionResultAsync(this);
+                .ToActionResultAsync(this);
 
         /// <summary>
         /// This method throws to show the error handling middleware handles it.
