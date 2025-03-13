@@ -1,7 +1,6 @@
 ﻿namespace AntiCorruptionLayer.Tests;
 
 using BestWeatherForecast.AntiCorruptionLayer;
-using Xunit;
 
 public class StorageNameTests
 {
