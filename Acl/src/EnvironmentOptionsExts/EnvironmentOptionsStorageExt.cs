@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 /// </summary>
 public static partial class EnvironmentOptionsStorageExt
 {
-    public static string GetStorageName(this EnvironmentOptions settings)
+    public static string GetStorageNameShared(this EnvironmentOptions settings)
     {
         var name = settings.GetResourceNameShared("stg");
         name = GetOnlyLettersAndNumbers().Replace(name, "");
@@ -19,7 +19,7 @@ public static partial class EnvironmentOptionsStorageExt
         return name;
     }
 
-    public static string GetBlobStorageUrl(this EnvironmentOptions settings) => $"https://{GetStorageName(settings)}.blob.core.windows.net";
+    public static string GetBlobStorageSharedUrl(this EnvironmentOptions settings) => $"https://{GetStorageNameShared(settings)}.blob.core.windows.net";
 
     [GeneratedRegex("[^a-z0-9]")]
     public static partial Regex GetOnlyLettersAndNumbers();

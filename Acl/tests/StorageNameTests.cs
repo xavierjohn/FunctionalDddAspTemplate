@@ -20,7 +20,7 @@ public class StorageNameTests
         var expected = $"{env}stgbwf";
 
         // Act
-        var actual = environmentOptions.GetStorageName();
+        var actual = environmentOptions.GetStorageNameShared();
 
         // Assert
         actual.Should().Be(expected);
@@ -40,7 +40,7 @@ public class StorageNameTests
         var expectedUrl = $"https://teststgbwf.blob.core.windows.net";
 
         // Act
-        var actualUrl = environmentOptions.GetBlobStorageUrl();
+        var actualUrl = environmentOptions.GetBlobStorageSharedUrl();
 
         // Assert
         actualUrl.Should().Be(expectedUrl);
@@ -58,7 +58,7 @@ public class StorageNameTests
         };
 
         // Act
-        Action act = () => environmentOptions.GetStorageName();
+        Action act = () => environmentOptions.GetStorageNameShared();
 
         // Assert
         act.Should().Throw<ArgumentException>();
