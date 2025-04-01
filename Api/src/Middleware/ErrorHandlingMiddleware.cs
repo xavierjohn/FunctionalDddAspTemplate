@@ -2,10 +2,9 @@
 
 using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
 /// <summary>
-/// Class Error handeling Middleware.
+/// Class Error handling Middleware.
 /// </summary>
 internal class ErrorHandlingMiddleware : IMiddleware
 {
@@ -36,7 +35,7 @@ internal class ErrorHandlingMiddleware : IMiddleware
             return;
         }
 
-        var ctx = new ProblemDetailsContext()
+        ProblemDetailsContext ctx = new()
         {
             HttpContext = context,
             ProblemDetails =
