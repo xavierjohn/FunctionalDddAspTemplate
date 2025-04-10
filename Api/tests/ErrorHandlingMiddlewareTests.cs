@@ -3,7 +3,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http.Json;
-using Xunit.Abstractions;
 
 [Collection(TestWebApplicationFactoryCollectionFixture.Id)]
 public class ErrorHandlingMiddlewareTests
@@ -27,11 +26,11 @@ public class ErrorHandlingMiddlewareTests
         request.Headers.Add("traceparent", traceParent);
 
         // Act
-        var response = await client.SendAsync(request);
+        var response = await client.SendAsync(request, TestContext.Current.CancellationToken);
 
         // Assert
         response.StatusCode.Should().Be(System.Net.HttpStatusCode.InternalServerError);
-        var problemDetailsWithTrace = await response.Content.ReadFromJsonAsync<ProblemDetailsWithTrace>();
+        var problemDetailsWithTrace = await response.Content.ReadFromJsonAsync<ProblemDetailsWithTrace>(TestContext.Current.CancellationToken);
         problemDetailsWithTrace.Should().NotBeNull();
         Assert.NotNull(problemDetailsWithTrace);
         problemDetailsWithTrace.Status.Should().Be(StatusCodes.Status500InternalServerError);

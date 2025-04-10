@@ -21,7 +21,7 @@ public class WeatherForecastQueryTests
             .Value;
 
         // Act
-        var result = await _sender.Send(query);
+        var result = await _sender.Send(query, TestContext.Current.CancellationToken);
 
         // Assert
         result.IsSuccess.Should().BeTrue();
@@ -54,7 +54,7 @@ public class WeatherForecastQueryTests
             .Value;
 
         // Act
-        var result = await _sender.Send(query);
+        var result = await _sender.Send(query, TestContext.Current.CancellationToken);
 
         // Assert
         result.IsFailure.Should().BeTrue();

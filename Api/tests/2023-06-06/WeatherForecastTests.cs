@@ -19,7 +19,7 @@ public class WeatherForecastTests
         var client = _factory.CreateClient();
 
         // Act
-        var response = await client.GetAsync("api/WeatherForecast/?api-version=2023-06-06");
+        var response = await client.GetAsync("api/WeatherForecast/?api-version=2023-06-06", TestContext.Current.CancellationToken);
 
         // Assert
         response.EnsureSuccessStatusCode();
@@ -56,7 +56,7 @@ public class WeatherForecastTests
         var client = _factory.CreateClient();
 
         // Act
-        var response = await client.GetAsync("api/WeatherForecast/75014?api-version=2023-06-06");
+        var response = await client.GetAsync("api/WeatherForecast/75014?api-version=2023-06-06", TestContext.Current.CancellationToken);
 
         // Assert
         response.EnsureSuccessStatusCode();
@@ -93,11 +93,11 @@ public class WeatherForecastTests
         var client = _factory.CreateClient();
 
         // Act
-        var response = await client.GetAsync("api/WeatherForecast/12345?api-version=2023-06-06");
+        var response = await client.GetAsync("api/WeatherForecast/12345?api-version=2023-06-06", TestContext.Current.CancellationToken);
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.NotFound);
-        var problemDetails = await response.Content.ReadFromJsonAsync<ProblemDetails>();
+        var problemDetails = await response.Content.ReadFromJsonAsync<ProblemDetails>(TestContext.Current.CancellationToken);
         problemDetails.Should().NotBeNull();
         Assert.NotNull(problemDetails);
         problemDetails.Status.Should().Be(404);

@@ -1,8 +1,7 @@
 ﻿namespace AntiCorruptionLayer.Tests;
 
-using Xunit.Categories;
 
-[Category(Constants.AntiCorruptionLayerTests)]
+[Trait("Category", Constants.AntiCorruptionLayerTests)]
 public class DontRunOnBuildServer
 {
     [Fact]
