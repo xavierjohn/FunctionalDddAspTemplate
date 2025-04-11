@@ -10,7 +10,11 @@ public class WeatherForecastTests
 {
     private readonly TestWebApplicationFactoryFixture _factory;
 
-    public WeatherForecastTests(TestWebApplicationFactoryFixture factory) => _factory = factory;
+    public WeatherForecastTests(TestWebApplicationFactoryFixture factory, ITestOutputHelper output)
+    {
+        _factory = factory;
+        _factory.OutputHelper = output;
+    }
 
     [Fact]
     public async Task Get_forecast_for_Redmond()

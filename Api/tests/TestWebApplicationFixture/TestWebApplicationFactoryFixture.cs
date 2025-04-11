@@ -15,15 +15,15 @@ public class TestWebApplicationFactoryFixture : WebApplicationFactory<Program>, 
 {
     private readonly bool _useRealServices;
 
-    public TestWebApplicationFactoryFixture(IMessageSink diagnosticMessageSink)
+    public TestWebApplicationFactoryFixture()
     {
         Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Development");
 
         _useRealServices = Environment.GetEnvironmentVariable("USE_REAL_SERVICES") == "true";
         if (_useRealServices)
-            diagnosticMessageSink.OnMessage(new DiagnosticMessage("Using real services"));
+            TestContext.Current.SendDiagnosticMessage("Using real services");
         else
-            diagnosticMessageSink.OnMessage(new DiagnosticMessage("Using mock services"));
+            TestContext.Current.SendDiagnosticMessage("Using mock services");
     }
 
     public ITestOutputHelper? OutputHelper { get; set; }
