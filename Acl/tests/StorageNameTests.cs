@@ -1,6 +1,7 @@
 ﻿namespace AntiCorruptionLayer.Tests;
 
 using BestWeatherForecast.AntiCorruptionLayer;
+using Xunit;
 
 public class StorageNameTests
 {
@@ -32,7 +33,7 @@ public class StorageNameTests
         // Arrange
         EnvironmentOptions environmentOptions = new()
         {
-            Environment = "test",
+            Environment = EnvironmentType.Test,
             RegionShortName = "usw2",
             ServiceName = "bwf"
         };
@@ -62,5 +63,27 @@ public class StorageNameTests
 
         // Assert
         act.Should().Throw<ArgumentException>();
+    }
+
+    [Fact]
+    public void Will_get_blob_url_for_fairfax()
+    {
+        // Arrange
+        EnvironmentOptions environmentOptions = new()
+        {
+            Environment = EnvironmentType.Ppe,
+            RegionShortName = "usw2",
+            ServiceName = "bwf",
+            Cloud = CloudType.Fairfax
+        };
+
+        var expectedUrl = $"https://ppestgbwf.blob.core.usgovcloudapi.net";
+
+        // Act
+        var actualUrl = environmentOptions.GetBlobStorageSharedUrl();
+
+        // Assert
+        actualUrl.Should().Be(expectedUrl);
+
     }
 }

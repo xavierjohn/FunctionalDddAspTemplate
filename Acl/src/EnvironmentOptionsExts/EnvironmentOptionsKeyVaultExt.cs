@@ -6,9 +6,17 @@ public static class EnvironmentOptionsKeyVaultExt
 
     public static string GetKeyVaultUri(this EnvironmentOptions settings)
     {
-        if (settings.Cloud == "Public")
-            return $"https://{settings.GetKeyVaultName()}.vault.azure.net/";
+        ArgumentNullException.ThrowIfNull(settings);
 
-        throw new NotImplementedException("Currently, only public cloud is supported.");
+        var keyVaultName = settings.GetKeyVaultName();
+        switch (settings.Cloud)
+        {
+            case CloudType.Public:
+                return $"https://{keyVaultName}.vault.azure.net/";
+            case CloudType.Fairfax:
+                return $"https://{keyVaultName}.vault.usgovcloudapi.net/";
+            default:
+                throw new NotSupportedException($"Cloud type '{settings.Cloud}' is not supported for Key Vault URI generation.");
+        }
     }
 }
