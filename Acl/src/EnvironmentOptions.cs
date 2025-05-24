@@ -8,7 +8,7 @@ public class EnvironmentOptions
 
     public string RegionShortName { get; set; } = "local";
 
-    public string Environment { get; set; } = "local";
+    public string Environment { get; set; } = EnvironmentType.Test;
 
-    public string Cloud { get; set; } = "Public";
+    public string Cloud { get; set; } = CloudType.Public;
 }

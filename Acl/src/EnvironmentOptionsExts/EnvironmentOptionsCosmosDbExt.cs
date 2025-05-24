@@ -4,5 +4,11 @@ public static class EnvironmentOptionsCosmosDbExt
 {
     public static string GetCosmosDbNameShared(this EnvironmentOptions settings) => settings.GetResourceNameShared("docdb");
 
-    public static string GetCosmosDbNameSharedUrl(this EnvironmentOptions settings) => $"https://{GetCosmosDbNameShared(settings)}.documents.azure.com:443/";
+    public static string GetCosmosDbNameSharedUrl(this EnvironmentOptions settings)
+    {
+        if (settings.Cloud == CloudType.Public)
+            return $"https://{GetCosmosDbNameShared(settings)}.documents.azure.com:443/";
+
+        throw new NotSupportedException($"Cloud type '{settings.Cloud}' is not supported.");
+    }
 }
