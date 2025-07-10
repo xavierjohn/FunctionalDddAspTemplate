@@ -28,7 +28,7 @@ Content-Type: application/json
 }
 
 ###
-// Bad Request passowrd
+// Bad Request password
 POST {{HostAddress}}/api/Users?api-version=2023-06-06
 Content-Type: application/json
 
@@ -37,4 +37,16 @@ Content-Type: application/json
   "lastName": "John",
   "email": "xavier@heaven.com",
   "password": "SimplePassword"
+}
+
+###
+// Bad Request multiple fields
+POST {{HostAddress}}/api/Users?api-version=2023-06-06
+Content-Type: application/json
+
+{
+  "firstName": "",
+  "lastName": "",
+  "email": "xavier",
+  "password": "Super!Complex6"
 }
