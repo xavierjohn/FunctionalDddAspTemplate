@@ -1,0 +1,52 @@
+﻿// Okay
+GET {{HostAddress}}/api/Users/xavier?api-version=2023-06-06
+Accept: application/json
+
+###
+// Create User
+// Okay
+POST {{HostAddress}}/api/Users?api-version=2023-06-06
+Content-Type: application/json
+
+{
+  "firstName": "Xavier",
+  "lastName": "John",
+  "email": "xavier@heaven.com",
+  "password": "Super!Complex6"
+}
+
+###
+// Bad Request email
+POST {{HostAddress}}/api/Users?api-version=2023-06-06
+Content-Type: application/json
+
+{
+  "firstName": "Xavier",
+  "lastName": "John",
+  "email": "xavier",
+  "password": "Super!Complex6"
+}
+
+###
+// Bad Request password
+POST {{HostAddress}}/api/Users?api-version=2023-06-06
+Content-Type: application/json
+
+{
+  "firstName": "Xavier",
+  "lastName": "John",
+  "email": "xavier@heaven.com",
+  "password": "SimplePassword"
+}
+
+###
+// Bad Request multiple fields
+POST {{HostAddress}}/api/Users?api-version=2023-06-06
+Content-Type: application/json
+
+{
+  "firstName": "",
+  "lastName": "",
+  "email": "xavier",
+  "password": "Super!Complex6"
+}
