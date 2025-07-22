@@ -2,7 +2,7 @@
 
 public static class EnvironmentOptionsCosmosDbExt
 {
-    public static string GetCosmosDbNameShared(this EnvironmentOptions settings) => settings.GetResourceNameShared("docdb");
+    public static string GetCosmosDbNameShared(this EnvironmentOptions settings) => settings.GetResourceNameShared("cosno");
 
     public static string GetCosmosDbNameSharedUrl(this EnvironmentOptions settings)
     {

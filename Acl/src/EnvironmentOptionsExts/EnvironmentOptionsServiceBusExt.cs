@@ -2,7 +2,7 @@
 
 public static class EnvironmentOptionsServiceBusExt
 {
-    public static string GetServiceBusName(this EnvironmentOptions settings) => settings.GetResourceNameShared("servicebus");
+    public static string GetServiceBusName(this EnvironmentOptions settings) => settings.GetResourceNameShared("sbns");
 
     public static string GetServiceBusNamespace(this EnvironmentOptions settings)
     {

@@ -18,7 +18,7 @@ public class StorageNameTests
             ServiceName = "bwf"
         };
 
-        var expected = $"{env}stgbwf";
+        var expected = $"{env}stbwf";
 
         // Act
         var actual = environmentOptions.GetStorageNameShared();
@@ -38,7 +38,7 @@ public class StorageNameTests
             ServiceName = "bwf"
         };
 
-        var expectedUrl = $"https://teststgbwf.blob.core.windows.net";
+        var expectedUrl = $"https://teststbwf.blob.core.windows.net";
 
         // Act
         var actualUrl = environmentOptions.GetBlobStorageSharedUrl();
@@ -77,7 +77,7 @@ public class StorageNameTests
             Cloud = CloudType.Fairfax
         };
 
-        var expectedUrl = $"https://ppestgbwf.blob.core.usgovcloudapi.net";
+        var expectedUrl = $"https://ppestbwf.blob.core.usgovcloudapi.net";
 
         // Act
         var actualUrl = environmentOptions.GetBlobStorageSharedUrl();
